@@ -1,6 +1,0 @@
-Ticket
-SupportTicketApp
-Node
-TicketQueue
-SupportTicketApp$1
-javaapplication60.JavaApplication60
