@@ -1,17 +1,4 @@
 
-/*
- * Support Ticket Queue - IT20 Midterm Mini-Project
- *
- * Data structure: QUEUE built with a SINGLY LINKED LIST (first in, first out).
- * Search: LINEAR SEARCH done by hand.
- * This file has NO import lines, so Swing classes are written with full names.
- *
- * Operations:
- *   Register Ticket      -> enqueue (add to the back)
- *   Pending table        -> view all tickets from front to back
- *   Resolve Next Ticket  -> dequeue (remove from the front)
- *   Search               -> linear search by ticket ID
- */
 
 
 class Ticket {
@@ -26,9 +13,6 @@ class Ticket {
     }
 }
 
-
-// One box in the linked list: a ticket plus an arrow to the next box
-//   [ticket | next] --> [ticket | next] --> [ticket | null]
 class Node {
     Ticket data;
     Node next;
@@ -66,7 +50,7 @@ class TicketQueue {
         size++;
     }
 
-    // DEQUEUE: remove and return the front ticket (null if empty)
+  
     Ticket dequeue() {
         if (front == null) {
             return null;
@@ -80,7 +64,6 @@ class TicketQueue {
         return t;
     }
 
-    // Get the ticket at a position (0 = front)
     Ticket get(int position) {
         Node current = front;
         for (int i = 0; i < position; i++) {
@@ -89,8 +72,6 @@ class TicketQueue {
         return current.data;
     }
 
-    // LINEAR SEARCH: check each node from the front until the ID matches.
-    // Returns the position (0 = front) or -1 if not found.
     int search(String id) {
         Node current = front;
         int position = 0;
@@ -106,7 +87,7 @@ class TicketQueue {
 }
 
 
-// The window (the only JFrame)
+
 public class SupportTicketApp extends javax.swing.JFrame {
 
     TicketQueue queue = new TicketQueue();
@@ -116,7 +97,7 @@ public class SupportTicketApp extends javax.swing.JFrame {
     javax.swing.JTextField issueField = new javax.swing.JTextField();
     javax.swing.JTextField searchField = new javax.swing.JTextField();
 
-    // Table with read-only cells
+ 
     javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(
             new String[]{"Position", "Ticket ID", "Name", "Issue"}, 0) {
         public boolean isCellEditable(int row, int col) {
@@ -131,7 +112,7 @@ public class SupportTicketApp extends javax.swing.JFrame {
         setTitle("Support Ticket Queue");
         setSize(600, 480);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(null);  // we place every component by hand: x, y, width, height
+        setLayout(null);  
 
         addLabel("Ticket ID:", 20, 20);
         addLabel("Name:", 20, 55);
@@ -164,7 +145,7 @@ public class SupportTicketApp extends javax.swing.JFrame {
         add(scroll);
         add(message);
 
-        // Connect each button to its method
+        
         registerButton.addActionListener(e -> registerTicket());
         resolveButton.addActionListener(e -> resolveNextTicket());
         searchButton.addActionListener(e -> searchTicket());
@@ -176,7 +157,7 @@ public class SupportTicketApp extends javax.swing.JFrame {
         add(label);
     }
 
-    // Rebuild the table from the queue (front to back)
+    
     void refreshTable() {
         model.setRowCount(0);
         for (int i = 0; i < queue.size(); i++) {
@@ -189,7 +170,7 @@ public class SupportTicketApp extends javax.swing.JFrame {
         }
     }
 
-    // REGISTER: validate, then enqueue
+ 
     void registerTicket() {
         String id = idField.getText().trim();
         String name = nameField.getText().trim();
@@ -212,7 +193,7 @@ public class SupportTicketApp extends javax.swing.JFrame {
         message.setText("Ticket " + id + " registered. Pending: " + queue.size());
     }
 
-    // RESOLVE: dequeue the front ticket
+
     void resolveNextTicket() {
         if (queue.isEmpty()) {
             message.setText("No pending tickets to resolve.");
@@ -223,7 +204,7 @@ public class SupportTicketApp extends javax.swing.JFrame {
         message.setText("Resolved " + t.id + " (" + t.name + "). Pending: " + queue.size());
     }
 
-    // SEARCH: linear search through the stored tickets
+    
     void searchTicket() {
         String id = searchField.getText().trim();
         if (id.isEmpty()) {
@@ -237,7 +218,7 @@ public class SupportTicketApp extends javax.swing.JFrame {
             message.setText("NOT FOUND: no pending ticket with ID " + id);
         } else {
             Ticket t = queue.get(position);
-            table.setRowSelectionInterval(position, position);  // highlight the row
+            table.setRowSelectionInterval(position, position);  
             message.setText("FOUND: " + t.id + " | " + t.name + " | " + t.issue
                     + " (position " + (position + 1) + ")");
         }
