@@ -1,19 +1,4 @@
-/*
- * Support Ticket Queue - IT20 Midterm Mini-Project
- *
- * Data structure: QUEUE built with a SINGLY LINKED LIST (first in, first out).
- * Search: LINEAR SEARCH done by hand.
- * This file has NO import lines, so Swing classes are written with full names.
- *
- * Operations:
- *   Register Ticket      -> enqueue (add to the back)
- *   Pending table        -> view all tickets from front to back
- *   Resolve Next Ticket  -> dequeue (remove from the front)
- *   Search               -> linear search by ticket ID
- */
 
-
-// One support ticket
 class Ticket {
     String id;
     String name;
@@ -27,8 +12,6 @@ class Ticket {
 }
 
 
-// One box in the linked list: a ticket plus an arrow to the next box
-//   [ticket | next] --> [ticket | next] --> [ticket | null]
 class Node {
     Ticket data;
     Node next;
