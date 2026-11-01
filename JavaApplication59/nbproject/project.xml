@@ -3,7 +3,11 @@
     <type>org.netbeans.modules.java.j2seproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
+<<<<<<<< HEAD:JavaApplication59/nbproject/project.xml
             <name>JavaApplication59</name>
+========
+            <name>singlyList</name>
+>>>>>>>> 9b7e89e22964abdaadcb23b675ae8242b49d738d:singlyList/nbproject/project.xml
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>
