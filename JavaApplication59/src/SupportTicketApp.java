@@ -14,7 +14,6 @@
  */
 
 
-// One support ticket
 class Ticket {
     String id;
     String name;
@@ -41,10 +40,7 @@ class Node {
 }
 
 
-// The queue. "front" is the next ticket to resolve, "rear" is the newest ticket.
-//   front                      rear
-//     v                          v
-//   [T001] --> [T002] --> [T003] --> null
+
 class TicketQueue {
     private Node front = null;
     private Node rear = null;
@@ -58,15 +54,14 @@ class TicketQueue {
         return size == 0;
     }
 
-    // ENQUEUE: add a ticket at the back
     void enqueue(Ticket t) {
         Node newNode = new Node(t);
-        if (rear == null) {          // queue was empty
+        if (rear == null) {           
             front = newNode;
             rear = newNode;
         } else {
-            rear.next = newNode;     // old last node points to the new node
-            rear = newNode;          // new node is now the last
+            rear.next = newNode;    
+            rear = newNode;         
         }
         size++;
     }
